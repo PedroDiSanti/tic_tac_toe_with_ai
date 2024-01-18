@@ -1,7 +1,7 @@
 class TicTacToe:
-    def __init__(self):
+    def __init__(self, player1, player2):
         self.board = [[' ' for _ in range(3)] for _ in range(3)]
-        self.current_player = 'X'
+        self.players = [player1, player2]
 
     def print_board(self):
         for row in self.board:
@@ -19,30 +19,23 @@ class TicTacToe:
         ]
         return any(any(row) for row in win_conditions)
 
-    def change_player(self):
-        self.current_player = 'O' if self.current_player == 'X' else 'X'
-
-    def is_valid_move(self, i: int, j: int) -> bool:
-        if i < 0 or i >= 3 or j < 0 or j >= 3:  # check if the move is within the board
-            return False
-        if self.board[i][j] != ' ':  # check if the position is not occupied
-            return False
-        return True
-
     def start(self):
+        player_index = 0
         self.print_board()
+
         while True:
-            print("It's {} turn. Enter your move in the format (row, col):".format(self.current_player))
             while True:
-                move_i, move_j = map(int, input("Enter your move (i,j): ").split(','))
-                if not self.is_valid_move(move_i, move_j):
-                    print("Invalid move!")
-                    return
+                current_player = self.players[player_index]
+                print(f"It's {current_player.symbol}'s turn.")
+                
+                move_i, move_j = current_player.get_move(self.board, current_player.symbol)
 
-                self.board[move_i][move_j] = self.current_player
+                self.board[move_i][move_j] = current_player.symbol
                 self.print_board()
-                if self.check_win(self.current_player):
-                    print(f"{self.current_player} Wins!")
+
+                if self.check_win(current_player.symbol):
+                    print(f"{current_player.symbol} Wins!")
                     return
 
-                self.change_player()
+                player_index = (player_index + 1) % 2
+
