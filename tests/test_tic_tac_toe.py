@@ -2,13 +2,13 @@ import io
 import unittest
 from unittest.mock import patch
 
-from app.auto_play import ComputerPlayer
+from app.auto_play import AutoPlay
 from app.tic_tac_toe import TicTacToe
 
 
 class TestTicTacToe(unittest.TestCase):
     def setUp(self):
-        self.game = TicTacToe(ComputerPlayer('X'), ComputerPlayer('O'))
+        self.game = TicTacToe(AutoPlay('X'), AutoPlay('O'))
 
     def test_initial_state(self):
         expected_board = [[' ' for _ in range(3)] for _ in range(3)]

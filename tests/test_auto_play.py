@@ -1,10 +1,10 @@
 import unittest
-from app.auto_play import ComputerPlayer
+from app.auto_play import AutoPlay
 
 
 class TestComputerPlayer(unittest.TestCase):
     def setUp(self):
-        self.player = ComputerPlayer('X')
+        self.player = AutoPlay('X')
         self.board = [
             ['X', 'O', ' '],
             [' ', ' ', ' '],
