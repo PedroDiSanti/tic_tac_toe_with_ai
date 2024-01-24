@@ -1,7 +1,7 @@
 import random
 
 
-class AutoPlay:
+class Move:
     """
     A class that represents the computer's automated movements within a Tic Tac Toe game.
 
@@ -53,11 +53,27 @@ class AutoPlay:
         tuple: The computer's chosen move as a tuple of row index and column index.
         """
         valid_moves = []
+        if symbol == "O":
+            move = self._generate_auto_move(board, valid_moves)
+        else:
+            move = self._generate_player_move(board)
+
+        print(f"Computer ({symbol}) move: {move}")
+        return move
+
+    def _generate_player_move(self, board):
+        while True:
+            print("It's X turn. Enter your move in the format (row, col):")
+            move = input()
+            i, j = map(int, move.split(','))
+            if self.is_valid_move(i, j, board):
+                return [i, j]
+
+    def _generate_auto_move(self, board, valid_moves):
         for i in range(3):
             for j in range(3):
                 if self.is_valid_move(i, j, board):
                     valid_moves.append((i, j))
-
         move = random.choice(valid_moves)
-        print(f"Computer ({symbol}) move: {move}")
         return move
+
