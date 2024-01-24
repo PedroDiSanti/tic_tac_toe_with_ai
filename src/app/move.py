@@ -3,14 +3,17 @@ import random
 
 class Move:
     """
-    A class that represents the computer's automated movements within a Tic Tac Toe game.
+    The Move class represents a move in a game.
 
     Attributes:
-    symbol (str): The symbol representing the computer in the game.
+    symbol (str): The character that represents the move on the game board.
 
     Methods:
-    is_valid_move(i: int, j: int, board): Checks if the identified move is valid.
-    get_move(board, symbol): Determines and returns the computer's next move.
+    __init__(self, symbol: str)
+    is_valid_move(i: int, j: int, board: list) -> bool
+    get_move(self, board: list, symbol: str) -> tuple
+    _generate_player_move(self, board)
+    _generate_auto_move(self, board, valid_moves)
     """
 
     def __init__(self, symbol):
@@ -61,7 +64,15 @@ class Move:
         print(f"Computer ({symbol}) move: {move}")
         return move
 
-    def _generate_player_move(self, board):
+    def _generate_player_move(self, board: list) -> list:
+        """
+        :param board: A list representing the current state of the game board.
+        :return: A list containing the row and column indices of the player's move.
+
+        This method is used to generate a move for the player with marker 'X'. It prompts the player to enter their move in the format (row, col). The input is split into row and column indices
+        *, converted to integers using the map function, and assigned to variables i and j respectively. It then checks if the move is valid using the is_valid_move method. If the move is valid
+        *, it returns a list containing the row and column indices of the player's move.
+        """
         while True:
             print("It's X turn. Enter your move in the format (row, col):")
             move = input()
@@ -69,7 +80,23 @@ class Move:
             if self.is_valid_move(i, j, board):
                 return [i, j]
 
-    def _generate_auto_move(self, board, valid_moves):
+    def _generate_auto_move(self, board: list, valid_moves: list) -> list:
+        """
+        :param board: The current state of the game board.
+        :param valid_moves: A list of valid moves.
+        :return: The chosen move as a tuple (row, column).
+
+        This method is responsible for generating an automatic move for the game. It iterates through each cell of the game board and checks if it is a valid move using the `is_valid_move` method
+        *. If a cell is a valid move, it adds it to the `valid_moves` list. Finally, it selects a random move from the `valid_moves` list and returns it as the chosen move.
+
+        Example usage:
+            board = [['X', 'O', ''],
+                     ['', 'X', 'O'],
+                     ['', '', '']]
+            valid_moves = []
+            game._generate_auto_move(board, valid_moves)
+            # Returns a random valid move (e.g., (0, 2))
+        """
         for i in range(3):
             for j in range(3):
                 if self.is_valid_move(i, j, board):
