@@ -4,27 +4,23 @@ from src.move import Move
 
 class Game:
     """
-    The main class implementing the game of Tic Tac Toe.
-
-    Attributes:
-    board (list of str): The game board, a 3x3 matrix.
-    players (list of Player): The players participating in the game.
-
-    Methods:
-    print_board(): Prints the current state of the board.
-    check_win(player: str): Checks if the specified player has won the game.
-    start(): Starts the game loop, alternating between players until a winning condition is met.
+    Represents a Tic-Tac-Toe game.
     """
 
     def __init__(self):
-        """The constructor method which initializes the board and players."""
+        """
+        Initializes an instance of the class.
+
+        :param self: The class instance.
+        :rtype: None
+        """
         self.board = Board()
         self.move = Move()
         self.players = ['X', 'O']
 
     def start(self):
         """
-        Method to start the game.
+        Start the game by alternating player turns.
 
         :return: None
         """

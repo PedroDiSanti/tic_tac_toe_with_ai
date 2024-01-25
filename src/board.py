@@ -1,34 +1,34 @@
 class Board:
     """
-    Board
-    =====
-
-    A class representing the game board.
-
-    Methods
-    -------
-
-    __init__()
-        Constructor method which initializes the game board with empty spaces.
-
-    print_board()
-        Prints the current state of the game board to the console.
+    Represents a tic-tac-toe board.
     """
 
     def __init__(self):
+        """
+        Initializes the board with empty cells.
+
+        :param self: object instance
+        :type self: object
+        """
         self.board = [[' ' for _ in range(3)] for _ in range(3)]
 
     @staticmethod
-    def print_board(board):
-        """Prints the current state of the game board to the console."""
+    def print_board(board: list):
+        """
+        Prints the given board.
+
+        :param board: A list representing the board.
+        :type board: list
+        """
         for row in board:
             print(row)
 
     @staticmethod
-    def is_board_full(board):
+    def is_board_full(board: list) -> bool:
         """
-        Check if the game board is full.
+        Check if the given board is full.
 
+        :param board: The game board represented as a 2D list.
         :return: True if the board is full, False otherwise.
         """
         for row in board:
@@ -37,15 +37,13 @@ class Board:
         return True
 
     @staticmethod
-    def check_win(board, player: str):
+    def check_win(board: list, player: str) -> bool:
         """
-        Checks if the specified player has won the game.
+        Check if the given player has won the game based on the current state of the board.
 
-        Args:
-        player (str): The symbol of the player to check for a win.
-
-        Returns:
-        bool: True if the player has won, False otherwise.
+        :param board: A 2D list representing the current state of the tic-tac-toe board.
+        :param player: The player to check for a win, represented by string 'X' or 'O'.
+        :return: True if the player has won the game, False otherwise.
         """
         win_conditions = [
             [board[0][j] == player and board[1][j] == player and board[2][j] == player for j in range(3)],  # columns

@@ -13,7 +13,6 @@ class TestGame(unittest.TestCase):
     @patch('src.board.Board.check_win', return_value=True)
     @unittest.mock.patch('sys.stdout', new_callable=io.StringIO)
     def test_start(self, mock_stdout, mock_check_win, mock_get_move):
-        """Test the game start method."""
         result = self.game.start()
         value = mock_stdout.getvalue().splitlines()
         self.assertIsNotNone(value)

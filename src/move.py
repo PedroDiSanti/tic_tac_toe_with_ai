@@ -3,52 +3,59 @@ from src.logic import Logic
 
 class Move:
     """
-    The Move class represents a move in a game.
+    Checks if the identified move (i, j) is valid on the provided game board.
 
-    Attributes:
-    symbol (str): The character that represents the move on the game board.
-
-    Methods:
-    __init__(self, symbol: str)
-    is_valid_move(i: int, j: int, board: list) -> bool
-    get_move(self, board: list, symbol: str) -> tuple
-    _generate_player_move(self, board)
-    _generate_auto_move(self, board, valid_moves)
+    :param i: The row of the move.
+    :param j: The column of the move.
+    :param board: The current state of the game board.
+    :return: True if the move is valid, False otherwise.
     """
 
     def __init__(self):
+        """
+
+        __init__()
+
+        Initialize the object by creating an instance of the Logic class and setting the depth to 0.
+
+        Parameters:
+        - self: The object itself.
+
+        Returns:
+        This method does not return anything.
+
+        """
         self.logic = Logic()
         self.depth = 0
 
     @staticmethod
     def is_valid_move(i: int, j: int, board: list) -> bool:
         """
-        Checks if the identified move (i, j) is valid on the provided game board.
+        Check if a move is valid on the board.
 
-        Args:
-        i (int): The row of the move.
-        j (int): The column of the move.
-        board (list of str): The current state of the game board.
-
-        Returns:
-        bool: True if the move is valid, False otherwise.
+        :param i: The row index of the move.
+        :param j: The column index of the move.
+        :param board: The current state of the board.
+        :return: True if the move is valid, False otherwise.
         """
-        if i < 0 or i >= 3 or j < 0 or j >= 3:  # check if the move is within the board
+        if i < 0 or i >= 3 or j < 0 or j >= 3:
             return False
-        if board[i][j] != ' ':  # check if the position is not occupied
+        if board[i][j] != ' ':
             return False
         return True
 
-    def get_move(self, board: list, symbol: str):
+    def get_move(self, board: list, symbol: str) -> list:
         """
-        Determines and returns the computer's next move.
+        :param board: The game board
+        :param symbol: The symbol of the player making the move
+        :return: The move chosen by the player or generated automatically
 
-        Args:
-        board (list of str): The current state of the game board.
-        symbol (str): The character that will represent the computer's positions on the board.
+        This method allows a player to choose their move or generates an automatic move if the player is not "O".
+        If the player is "O", the move is generated automatically using the _generate_auto_move() method.
+        Otherwise, the player is prompted to enter their move using the _generate_player_move() method.
 
-        Returns:
-        tuple: The computer's chosen move as a tuple of row index and column index.
+        The chosen move is then printed along with the symbol of the player.
+        Finally, the chosen move is returned.
         """
         if symbol == "O":
             move = self._generate_auto_move(board)
@@ -60,12 +67,11 @@ class Move:
 
     def _generate_player_move(self, board: list) -> list:
         """
-        :param board: A list representing the current state of the game board.
-        :return: A list containing the row and column indices of the player's move.
+        :param board: The current state of the game board.
+        :return: A list representing the player's move, in the format [row, col].
 
-        This method is used to generate a move for the player with marker 'X'. It prompts the player to enter their move in the format (row, col). The input is split into row and column indices
-        *, converted to integers using the map function, and assigned to variables i and j respectively. It then checks if the move is valid using the is_valid_move method. If the move is valid
-        *, it returns a list containing the row and column indices of the player's move.
+        This method prompts the player for their move and validates whether the move is valid or not. The player should enter their move in the format (row, col), separated by a comma. The user
+        * input is then split into two integers, representing the row and column of the move. If the move is valid, it is returned as a list [row, col].
         """
         while True:
             print("It's X turn. Enter your move in the format (row, col):")
