@@ -1,5 +1,5 @@
 import unittest
-from src.app.logic import Logic
+from src.logic import Logic
 
 
 class TestLogic(unittest.TestCase):

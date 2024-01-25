@@ -1,4 +1,4 @@
-from src.app.board import Board
+from src.board import Board
 
 
 class Logic:

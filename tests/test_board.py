@@ -3,7 +3,7 @@ import ast
 import unittest
 from unittest.mock import patch
 
-from src.app.board import Board  # Assume this is your module
+from src.board import Board
 
 
 class TestBoard(unittest.TestCase):

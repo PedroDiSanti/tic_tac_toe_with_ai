@@ -1,6 +1,4 @@
-import random
-
-from src.app.logic import Logic
+from src.logic import Logic
 
 
 class Move:
@@ -18,14 +16,7 @@ class Move:
     _generate_auto_move(self, board, valid_moves)
     """
 
-    def __init__(self, symbol):
-        """
-        The constructor for the AutoPlay class.
-
-        Args:
-        symbol (str): The character that will represent the computer's positions on the board.
-        """
-        self.symbol = symbol
+    def __init__(self):
         self.logic = Logic()
         self.depth = 0
 

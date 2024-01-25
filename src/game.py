@@ -1,3 +1,7 @@
+from src.board import Board
+from src.move import Move
+
+
 class Game:
     """
     The main class implementing the game of Tic Tac Toe.
@@ -12,10 +16,11 @@ class Game:
     start(): Starts the game loop, alternating between players until a winning condition is met.
     """
 
-    def __init__(self, player1, player2, board):
+    def __init__(self):
         """The constructor method which initializes the board and players."""
-        self.render_board = board
-        self.players = [player1, player2]
+        self.board = Board()
+        self.move = Move()
+        self.players = ['X', 'O']
 
     def start(self):
         """
@@ -24,18 +29,18 @@ class Game:
         :return: None
         """
         player_index = 0
-        self.render_board.print_board(self.render_board.board)
+        self.board.print_board(self.board.board)
 
         while True:
-            current_player = self.players[player_index]
+            symbol = self.players[player_index]
 
-            move_i, move_j = current_player.get_move(self.render_board.board, current_player.symbol)
+            move_i, move_j = self.move.get_move(self.board.board, symbol)
 
-            self.render_board.board[move_i][move_j] = current_player.symbol
-            self.render_board.print_board(self.render_board.board)
+            self.board.board[move_i][move_j] = symbol
+            self.board.print_board(self.board.board)
 
             player_index = (player_index + 1) % 2
 
-            if self.render_board.check_win(self.render_board.board, current_player.symbol):
-                print(f"{current_player.symbol} Wins!")
+            if self.board.check_win(self.board.board, symbol):
+                print(f"{symbol} Wins!")
                 return
