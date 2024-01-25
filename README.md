@@ -6,6 +6,7 @@ This project is a simple implementation of the popular game "Tic Tac Toe" develo
 
 - Python 3.10.4: Our version of choice due to its clear syntax, vast library support, and powerful features.
 - Pytest: A testing framework for Python that allows the easy creation of simple and scalable tests.
+- Coverage: A tool for measuring code coverage of Python programs
 
 ## How it Works
 
@@ -22,7 +23,10 @@ The game is run through the `run_game.py`, which emulates a computer against the
 
 ## Testing
 
-To run tests, ensure you have pytest installed (`pip install pytest`), navigate to the directory with the tests in your terminal, and run `pytest`.
+To run tests, ensure you have pytest installed (`pip install pytest`), navigate to the directory with the tests in your terminal, and run `pytest`. 
+
+For the coverage file, run `python -m coverage run -m unittest` and then use `coverage report -m`.
+`
 
 ## Contributing
 
