@@ -40,3 +40,6 @@ class Game:
             if self.board.check_win(self.board.board, symbol):
                 print(f"{symbol} Wins!")
                 return
+            if self.board.is_board_full(self.board.board):
+                print("The game is draw!")
+                return
