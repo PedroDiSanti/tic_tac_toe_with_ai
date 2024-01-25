@@ -38,6 +38,6 @@ class TestBoard(unittest.TestCase):
 
         This method is intended to be used as a unit test case in a test suite for the board object.
         """
-        self.board.print_board()
+        self.board.print_board(self.board.board)
         output = [ast.literal_eval(item) for item in mock_stdout.getvalue().splitlines()]
         self.assertEqual(self.board.board, output)

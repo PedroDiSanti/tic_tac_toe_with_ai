@@ -1,5 +1,7 @@
 import random
 
+from src.app.logic import Logic
+
 
 class Move:
     """
@@ -24,6 +26,8 @@ class Move:
         symbol (str): The character that will represent the computer's positions on the board.
         """
         self.symbol = symbol
+        self.logic = Logic()
+        self.depth = 0
 
     @staticmethod
     def is_valid_move(i: int, j: int, board: list) -> bool:
@@ -55,13 +59,12 @@ class Move:
         Returns:
         tuple: The computer's chosen move as a tuple of row index and column index.
         """
-        valid_moves = []
         if symbol == "O":
-            move = self._generate_auto_move(board, valid_moves)
+            move = self._generate_auto_move(board)
         else:
             move = self._generate_player_move(board)
 
-        print(f"Computer ({symbol}) move: {move}")
+        print(f"({symbol}) move: {move}")
         return move
 
     def _generate_player_move(self, board: list) -> list:
@@ -80,7 +83,7 @@ class Move:
             if self.is_valid_move(i, j, board):
                 return [i, j]
 
-    def _generate_auto_move(self, board: list, valid_moves: list) -> list:
+    def _generate_auto_move(self, board: list) -> list:
         """
         :param board: The current state of the game board.
         :param valid_moves: A list of valid moves.
@@ -97,10 +100,6 @@ class Move:
             game._generate_auto_move(board, valid_moves)
             # Returns a random valid move (e.g., (0, 2))
         """
-        for i in range(3):
-            for j in range(3):
-                if self.is_valid_move(i, j, board):
-                    valid_moves.append((i, j))
-        move = random.choice(valid_moves)
-        return move
-
+        move = self.logic.determine_best_score_and_move(board, self.depth, True, 'O')
+        i, j = move.get("index")[0], move.get("index")[1]
+        return [i, j]
