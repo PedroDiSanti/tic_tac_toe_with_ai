@@ -1,8 +1,9 @@
+"""Represents a Tic-Tac-Toe game."""
 from src.board import Board
 from src.move import Move
 
 
-class Game:
+class Game:  # pylint: disable=too-few-public-methods
     """
     Represents a Tic-Tac-Toe game.
     """

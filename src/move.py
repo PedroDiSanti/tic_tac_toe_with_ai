@@ -1,3 +1,4 @@
+"""Checks if the identified move (i, j) is valid on the provided game board."""
 from src.logic import Logic
 
 
@@ -50,9 +51,12 @@ class Move:
         :param symbol: The symbol of the player making the move
         :return: The move chosen by the player or generated automatically
 
-        This method allows a player to choose their move or generates an automatic move if the player is not "O".
-        If the player is "O", the move is generated automatically using the _generate_auto_move() method.
-        Otherwise, the player is prompted to enter their move using the _generate_player_move() method.
+        This method allows a player to choose their move or generates an automatic move if the
+            player is not "O".
+        If the player is "O", the move is generated automatically using the _generate_auto_move()
+            method.
+        Otherwise, the player is prompted to enter their move using the _generate_player_move()
+            method.
 
         The chosen move is then printed along with the symbol of the player.
         Finally, the chosen move is returned.
@@ -70,8 +74,10 @@ class Move:
         :param board: The current state of the game board.
         :return: A list representing the player's move, in the format [row, col].
 
-        This method prompts the player for their move and validates whether the move is valid or not. The player should enter their move in the format (row, col), separated by a comma. The user
-        * input is then split into two integers, representing the row and column of the move. If the move is valid, it is returned as a list [row, col].
+        This method prompts the player for their move and validates whether the move is valid or
+            not. The player should enter their move in the format (row, col), separated by a comma.
+                The user * input is then split into two integers, representing the row and column
+                    of the move. If the move is valid, it is returned as a list [row, col].
         """
         while True:
             print("It's X turn. Enter your move in the format (row, col):")
@@ -83,11 +89,13 @@ class Move:
     def _generate_auto_move(self, board: list) -> list:
         """
         :param board: The current state of the game board.
-        :param valid_moves: A list of valid moves.
         :return: The chosen move as a tuple (row, column).
 
-        This method is responsible for generating an automatic move for the game. It iterates through each cell of the game board and checks if it is a valid move using the `is_valid_move` method
-        *. If a cell is a valid move, it adds it to the `valid_moves` list. Finally, it selects a random move from the `valid_moves` list and returns it as the chosen move.
+        This method is responsible for generating an automatic move for the game.
+            It iterates through each cell of the game board and checks if it is a valid move using
+                the `is_valid_move` method *. If a cell is a valid move, it adds it to the
+                    `valid_moves` list. Finally, it selects a random move from the `valid_moves`
+                        list and returns it as the chosen move.
 
         Example usage:
             board = [['X', 'O', ''],
