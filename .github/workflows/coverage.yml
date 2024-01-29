@@ -5,16 +5,14 @@ on: [push]
 jobs:
   test:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: [3.10.0]
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
-      - name: Set Up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v3
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: "3.10"
+          architecture: "x64"
       - name: Display Python version
         run: python -c "import sys; print(sys.version)"
       - name: Install pytest
@@ -28,7 +26,6 @@ jobs:
         with:
           jacoco-csv-file: build/reports/jacoco/test/jacocoTestReport.csv
           badges-directory: build/reports/jacoco/test/html/badges
-
       - name: Publish coverage report to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
