@@ -1,6 +1,6 @@
 # Tic Tac Toe Game with AI!
 [![Pylint](https://github.com/PedroDiSanti/tic_tac_toe_with_ai/actions/workflows/pylint.yml/badge.svg)](https://github.com/PedroDiSanti/tic_tac_toe_with_ai/actions/workflows/pylint.yml)
-[![Run tests.](https://github.com/PedroDiSanti/tic_tac_toe_with_ai/actions/workflows/coverage.yml/badge.svg)](https://github.com/PedroDiSanti/tic_tac_toe_with_ai/actions/workflows/coverage.yml)
+[![Tests](https://github.com/PedroDiSanti/tic_tac_toe_with_ai/actions/workflows/coverage.yml/badge.svg?branch=master)](https://github.com/PedroDiSanti/tic_tac_toe_with_ai/actions/workflows/coverage.yml)
 
 This project is a simple implementation of the popular game "Tic Tac Toe" developed in Python using the [Minimax Algorithm](https://en.wikipedia.org/wiki/Minimax).
 
